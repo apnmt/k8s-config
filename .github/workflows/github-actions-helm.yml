@@ -23,7 +23,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: ./repo
+          source_file: ./repo/
           destination_repo: 'apnmt/apnmt-charts'
           user_email: 'tobias.wittmann96@web.de'
           user_name: 'tobi5775'
