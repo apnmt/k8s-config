@@ -16,7 +16,7 @@ jobs:
         run: |
           mkdir -p repo
           cd repo
-          helm package ../charts/*
+          helm package ../charts
           pwd
       - name: Push to repository
         uses: dmnemec/copy_file_to_another_repo_action@main
