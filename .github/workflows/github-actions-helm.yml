@@ -18,6 +18,7 @@ jobs:
           cd repo
           helm dependency update ../charts
           helm package ../charts
+          echo ${{ secrets.API_TOKEN_GITHUB }}
       - name: Push to repository
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
