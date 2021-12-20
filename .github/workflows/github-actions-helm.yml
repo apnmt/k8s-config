@@ -14,9 +14,10 @@ jobs:
       - uses: azure/setup-helm@v1
       - name: Build Helm Chart
         run: |
-          mkdir -p ${{ github.ref }}
-          cd ${{ github.ref }}
+          mkdir -p repo
+          cd repo
           helm package ../charts/*
+          pwd
       - name: Push to repository
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
