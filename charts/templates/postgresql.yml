@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.image.tag }}-postgresql
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.image.tag }}-postgresql
+type: Opaque
+data:
+  postgresql-password: MTgyZDUzNmVmMTI5YWFmMzc2NTMzMTNjY2RhZjVlNzc2YTI1NDUwY2E5ZmY2MzVjM2Y1MjQzZmJiNzAw
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.image.tag }}-postgresql
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.image.tag }}-postgresql
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.image.tag }}-postgresql
+    spec:
+      volumes:
+        - name: data
+          emptyDir: {}
+      containers:
+        - name: postgres
+          image: postgres:13.5
+          env:
+            - name: POSTGRES_USER
+              value: {{ .Values.image.tag }}
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.image.tag }}-postgresql
+                  key: postgresql-password
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+              subPath: postgres
+          resources:
+            requests:
+              memory: '512Mi'
+              cpu: '500m'
+            limits:
+              memory: '1Gi'
+              cpu: '1'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.image.tag }}-postgresql
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    app: {{ .Values.image.tag }}-postgresql
+  ports:
+    - port: 5432
