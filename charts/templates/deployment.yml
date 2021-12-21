@@ -81,7 +81,7 @@ spec:
               cpu: '1'
           ports:
             - name: http
-              containerPort: 8081
+              containerPort: {{ .Values.spec.ports.targetPort }}
           readinessProbe:
             httpGet:
               path: /management/health/readiness
