@@ -1,0 +1,4 @@
+emissary-ingress:
+  createNamespace: true
+  namespace:
+    name: emissary
