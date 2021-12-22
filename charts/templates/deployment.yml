@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.image.tag }}
-  namespace: {{ .Values.namespace }}
+  namespace: {{ .Release.Namespace }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -54,7 +54,7 @@ spec:
             - name: SPRING_DATA_MONGODB_DATABASE
               value: {{ .Values.image.tag }}
             - name: SPRING_DATA_MONGODB_URI
-              value: 'mongodb://{{ .Values.image.tag }}-mongodb-0.{{ .Values.image.tag }}-mongodb.{{ .Values.namespace }}:27017'
+              value: 'mongodb://{{ .Values.image.tag }}-mongodb-0.{{ .Values.image.tag }}-mongodb.{{ .Release.Namespace }}:27017'
             - name: SPRING_SLEUTH_PROPAGATION_KEYS
               value: 'x-request-id,x-ot-span-context'
             - name: JAVA_OPTS

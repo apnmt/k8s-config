@@ -7,4 +7,4 @@ metadata:
 spec:
   hostname: "*"
   prefix: {{ .Values.emissary.prefix }}
-  service: {{ .Values.image.tag }}.{{ .Values.namespace }}:80
+  service: {{ .Values.image.tag }}.{{ .Release.Namespace }}:80
