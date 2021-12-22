@@ -1,6 +1,6 @@
 apiVersion: v2
-name: apnmt-emissary-ingress
-description: A Helm chart for Emissary-Ingress in Kubernetes
+name: apnmt-elk
+description: A Helm chart for ELK-Stack in Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -24,6 +24,12 @@ version: 0.0.1
 appVersion: "0.0.1"
 
 dependencies:
-  - name: emissary-ingress
-    version: 7.2.0
-    repository: https://app.getambassador.io
+  - name: kibana
+    version: 7.16.2
+    repository: https://helm.elastic.co
+  - name: elasticsearch
+    version: 7.16.2
+    repository: https://helm.elastic.co
+  - name: logstash
+    version: 7.16.2
+    repository: https://helm.elastic.co
