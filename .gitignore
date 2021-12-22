@@ -9,3 +9,9 @@
 *.orig
 classes/
 out/
+
+######################
+# Helm
+######################
+*.lock
+/charts/charts/
