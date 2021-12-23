@@ -63,7 +63,7 @@ spec:
               value: graceful
             {{- range $key, $val := .Values.properties }}
             - name: {{ $val.name }}
-              value: {{ $val.value }}
+              value: {{ $val.value | quote}}
             {{- end }}
           resources:
             requests:
