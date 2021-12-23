@@ -1,0 +1,26 @@
+kube-prometheus-stack:
+  grafana:
+    adminPassword: admin
+  prometheus:
+    prometheusSpec:
+      additionalScrapeConfigs:
+        - job_name: organizationservice
+          metrics_path: '/management/prometheus'
+          scrape_interval: 5s
+          static_configs:
+            - targets: [ 'organizationservice-k8s.apnmt.svc.cluster.local' ]
+        - job_name: appointmentservice
+          metrics_path: '/management/prometheus'
+          scrape_interval: 5s
+          static_configs:
+            - targets: [ 'appointmentservice-k8s.apnmt.svc.cluster.local' ]
+        - job_name: organizationappointmentservice
+          metrics_path: '/management/prometheus'
+          scrape_interval: 5s
+          static_configs:
+            - targets: [ 'organizationappointmentservice-k8s.apnmt.svc.cluster.local' ]
+        - job_name: paymentservice
+          metrics_path: '/management/prometheus'
+          scrape_interval: 5s
+          static_configs:
+            - targets: [ 'paymentservice-k8s.apnmt.svc.cluster.local' ]

@@ -1,6 +1,6 @@
 apiVersion: v2
-name: apnmt-elk
-description: A Helm chart for ELK-Stack in Kubernetes
+name: apnmt-monitoring
+description: A Helm chart for Monitoring-Stack in Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -24,12 +24,6 @@ version: 0.0.1
 appVersion: "0.0.1"
 
 dependencies:
-  - name: kibana
-    version: 7.16.2
-    repository: https://helm.elastic.co
-  - name: elasticsearch
-    version: 7.16.2
-    repository: https://helm.elastic.co
-  - name: logstash
-    version: 7.16.2
-    repository: https://helm.elastic.co
+  - name: kube-prometheus-stack
+    version: 25.1.0
+    repository: https://prometheus-community.github.io/helm-charts

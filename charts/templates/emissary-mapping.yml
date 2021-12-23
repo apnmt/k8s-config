@@ -1,0 +1,11 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: authentication-emissary-mapping
+  namespace: {{ .Release.Namespace }}
+spec:
+  hostname: "*"
+  prefix: /service/grafana/
+  service: {{ .Release.Name }}-grafana.{{ .Release.Namespace }}:80
+  bypass_auth: true
