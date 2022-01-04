@@ -1,0 +1,35 @@
+name: Apnmt Build Helm Chart
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - '*'
+      - '!master'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Set Helm Chart Name
+        uses: datamonsters/replace-action@v2
+        with:
+          files: 'k8s-config/charts/Chart.yaml'
+          replacements: '^CFG:name^=apnmt-mongo'
+      - uses: azure/setup-helm@v1
+      - name: Build Helm Chart
+        run: |
+          mkdir -p repo
+          cd repo
+          helm dependency update ../charts
+          helm package ../charts
+      - name: Push to repository
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: ./repo/.
+          destination_repo: 'apnmt/apnmt-charts'
+          user_email: 'tobias.wittmann96@web.de'
+          user_name: 'tobi5775'
