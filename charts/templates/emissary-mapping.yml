@@ -8,3 +8,4 @@ spec:
   hostname: "*"
   prefix: {{ .Values.emissary.prefix }}
   service: "{{ .Values.image.tag }}.{{ .Release.Namespace }}:80"
+  bypass_auth: {{ .Values.emissary.bypass_auth | default false }}
