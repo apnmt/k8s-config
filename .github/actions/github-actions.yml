@@ -1,0 +1,17 @@
+name: Apnmt Build Helm Charts
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger organization-appointment-service Build Helm Chart
+        run: |
+          curl -XPOST -u "tobi5775:${{ secrets.API_TOKEN_GITHUB }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/apnmt/organization-appointment-service-k8s/actions/workflows/github-build-helm-chart.yml/dispatches --data '{"ref": "master"}'
+
+      - name: Trigger auth-service Build Helm Chart
+        run: |
+          curl -XPOST -u "tobi5775:${{ secrets.API_TOKEN_GITHUB }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/apnmt/auth-service-k8s/actions/workflows/github-build-helm-chart.yml/dispatches --data '{"ref": "master"}'
