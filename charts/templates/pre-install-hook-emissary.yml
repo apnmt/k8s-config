@@ -9,6 +9,19 @@ spec:
     - name: pre-install-container
       image: busybox
       imagePullPolicy: IfNotPresent
-      command: ['sh', '-c', 'kubectl wait --timeout=90s --for=condition=available deployment emissary-apiext -n emissary-system' ]
+      command:
+        - '/bin/sh'
+        - '-c'
+        - |
+          while true
+          do
+            rt=$(nc -z -w 1 emissary-apiext.emissary-system 8080)
+            if [ $? -eq 0 ]; then
+              echo "emissary-apiext is UP"
+              break
+            fi
+            echo "emissary-apiext is not yet reachable;sleep for 10s before retry"
+            sleep 10
+          done
   restartPolicy: Never
   terminationGracePeriodSeconds: 0
