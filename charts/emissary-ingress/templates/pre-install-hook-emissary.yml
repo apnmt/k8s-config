@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: preinstall-hook-ingress
+  annotations:
+    "helm.sh/hook": "pre-install"
+spec:
+  containers:
+    - name: pre-install-container
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command:
+        - 'sh'
+        - '-c'
+        - |
+          echo "pre install hook pod is running"
+          while true
+          do
+            rt=$(nc -z -w 1 emissary-apiext.emissary-system.svc.cluster.local 443)
+            if [ $? -eq 0 ]; then
+              echo "emissary-apiext is UP"
+              break
+            fi
+            echo "emissary-apiext is not yet reachable;sleep for 10s before retry"
+            sleep 10
+          done
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 0

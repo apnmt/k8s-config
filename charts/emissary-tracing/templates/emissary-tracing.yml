@@ -1,0 +1,14 @@
+apiVersion: getambassador.io/v3alpha1
+kind:  TracingService
+metadata:
+  name:  emissary-ingress-tracing
+  namespace: apnmt
+spec:
+  service: "jaeger-collector.apnmt.svc.cluster.local:9411"
+  driver: zipkin
+  config: {}
+  tag_headers:
+    - ":authority"
+    - ":path"
+  sampling:
+    overall: 100

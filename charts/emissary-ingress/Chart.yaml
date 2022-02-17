@@ -1,6 +1,6 @@
 apiVersion: v2
 name: apnmt-emissary-ingress
-description: A Helm chart for Emissary-Ingress in Kubernetes
+description: A Helm chart for Emissary-Ingress-ApiExt in Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
 #

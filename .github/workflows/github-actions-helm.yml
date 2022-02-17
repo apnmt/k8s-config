@@ -16,8 +16,12 @@ jobs:
         run: |
           mkdir -p repo
           cd repo
-          helm dependency update ../charts
-          helm package ../charts
+          helm dependency update ../charts/emissary-apiext
+          helm dependency update ../charts/emissary-ingress
+          helm dependency update ../charts/emissary-tracing
+          helm package ../charts/emissary-apiext
+          helm package ../charts/emissary-ingress
+          helm package ../charts/emissary-tracing
       - name: Push to repository
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
