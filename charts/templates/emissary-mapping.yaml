@@ -1,0 +1,12 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: jaeger-emissary-mapping
+  namespace: {{ .Release.Namespace }}
+spec:
+  hostname: "*"
+  prefix: /jaeger/
+  rewrite: /jaeger/
+  service: jaeger-query.{{ .Release.Namespace }}:16686
+  bypass_auth: true
