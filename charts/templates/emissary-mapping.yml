@@ -6,6 +6,6 @@ metadata:
   namespace: {{ .Release.Namespace }}
 spec:
   hostname: "*"
-  prefix: /service/grafana/
+  prefix: /grafana/
   service: {{ .Release.Name }}-grafana.{{ .Release.Namespace }}:80
   bypass_auth: true
