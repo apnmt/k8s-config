@@ -2,7 +2,7 @@
 apiVersion: getambassador.io/v3alpha1
 kind: Mapping
 metadata:
-  name: authentication-emissary-mapping
+  name: grafana-emissary-mapping
   namespace: {{ .Release.Namespace }}
 spec:
   hostname: "*"
