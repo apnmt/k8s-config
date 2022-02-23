@@ -1,0 +1,11 @@
+---
+apiVersion: getambassador.io/v3alpha1
+kind: Mapping
+metadata:
+  name: kibana-emissary-mapping
+  namespace: {{ .Release.Namespace }}
+spec:
+  hostname: "*"
+  prefix: /kibana/
+  service: {{ .Release.Name }}-kibana.{{ .Release.Namespace }}:5601
+  bypass_auth: true

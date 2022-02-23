@@ -1,0 +1,5 @@
+kibana:
+  kibanaConfig:
+    kibana.yml: |
+      server.basepath: "/kibana"
+      server.rewriteBasePath: true
