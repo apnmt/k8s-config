@@ -14,6 +14,7 @@ out/
 # Helm
 ######################
 *.lock
+charts/charts/
 charts/emissary-apiext/charts/
 charts/emissary-ingress/charts/
 charts/emissary-tracing/charts/
