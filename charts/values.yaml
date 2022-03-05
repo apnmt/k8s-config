@@ -1,5 +1,44 @@
 kibana:
+  resources:
+    requests:
+      memory: '512Mi'
+      cpu: '500m'
   kibanaConfig:
     kibana.yml: |
-      server.basepath: "/kibana"
-      server.rewriteBasePath: true
+      server.basePath: "/kibana"
+      server.rewriteBasePath: false
+  elasticsearchHosts: "http://elasticsearch-master.apnmt:9200"
+elasticsearch:
+  resources:
+    requests:
+      memory: '512Mi'
+      cpu: '500m'
+  replicas: 1
+  minimumMasterNodes: 1
+logstash:
+  logstashPipeline:
+    logstash.conf: |
+      input {
+        tcp {
+          port => "5000"
+          type => syslog
+          codec => json_lines
+        }
+      }
+      output {
+        elasticsearch {
+          hosts => ["elasticsearch-master.apnmt:9200"]
+          index => "apnmt-%{+YYYY.MM.dd}"
+        }
+      }
+  service:
+    type: ClusterIP
+    ports:
+      - name: tcp
+        port: 5000
+        protocol: TCP
+        targetPort: 5000
+  resources:
+    requests:
+      memory: '512Mi'
+      cpu: '500m'
