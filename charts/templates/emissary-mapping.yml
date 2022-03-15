@@ -9,3 +9,10 @@ spec:
   prefix: {{ .Values.emissary.prefix }}
   service: "{{ .Values.image.tag }}.{{ .Release.Namespace }}:80"
   bypass_auth: {{ .Values.emissary.bypass_auth | default false }}
+  retry_policy:
+    retry_on: "5xx"
+    num_retries: 4
+  circuit_breakers:
+    - max_connections: 2048
+      max_pending_requests: 2048
+      max_retries: 4
