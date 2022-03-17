@@ -1,1 +1,6 @@
 # Values will be defined by service.
+
+mongodb:
+  auth:
+    rootUser: root
+    rootPassword: Uz7GnNqGEUkf
