@@ -95,4 +95,4 @@ spec:
               port: http
             initialDelaySeconds: 120
       imagePullSecrets:
-      - name: apnmtregcred
+      - name: {{ .Values.image.tag }}-apnmtregcred
