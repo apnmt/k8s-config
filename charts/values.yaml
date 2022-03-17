@@ -1,35 +1,12 @@
-kube-prometheus-stack:
-  grafana:
-    adminPassword: admin
-    grafana.ini:
-      server:
-        root_url: http://localhost:55946/grafana
-        serve_from_sub_path: true
-  prometheus:
-    prometheusSpec:
-      additionalScrapeConfigs:
-        - job_name: emissary-ingress
-          metrics_path: "/metrics"
-          scrape_interval: 5s
-          static_configs:
-            - targets: [ 'apnmt-emissary-ingress-admin.apnmt.svc.cluster.local:8877' ]
-        - job_name: organizationservice
-          metrics_path: '/management/prometheus'
-          scrape_interval: 5s
-          static_configs:
-            - targets: [ 'organizationservice-k8s.apnmt.svc.cluster.local' ]
-        - job_name: appointmentservice
-          metrics_path: '/management/prometheus'
-          scrape_interval: 5s
-          static_configs:
-            - targets: [ 'appointmentservice-k8s.apnmt.svc.cluster.local' ]
-        - job_name: organizationappointmentservice
-          metrics_path: '/management/prometheus'
-          scrape_interval: 5s
-          static_configs:
-            - targets: [ 'organizationappointmentservice-k8s.apnmt.svc.cluster.local' ]
-        - job_name: paymentservice
-          metrics_path: '/management/prometheus'
-          scrape_interval: 5s
-          static_configs:
-            - targets: [ 'paymentservice-k8s.apnmt.svc.cluster.local' ]
+cluster:
+  name: ""
+
+limits:
+  resources:
+    cpu: 50
+    memory: 50Gi
+
+requirements:
+  capaccityType:
+    values:
+      - "spot"
