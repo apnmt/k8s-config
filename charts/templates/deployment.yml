@@ -36,7 +36,7 @@ spec:
             - |
               while true
               do
-                rt=$(nc -z -w 1 {{ .Values.image.tag }}-mongodb 27017)
+                rt=$(nc -z -w 1 {{ .Release.Name }}-mongodb 27017)
                 if [ $? -eq 0 ]; then
                   echo "DB is UP"
                   break
@@ -54,7 +54,7 @@ spec:
             - name: SPRING_DATA_MONGODB_DATABASE
               value: {{ .Values.image.tag }}
             - name: SPRING_DATA_MONGODB_URI
-              value: 'mongodb://{{ .Values.mongodb.auth.rootUser }}:{{ .Values.mongodb.auth.rootPassword }}@{{ .Values.image.tag }}-mongodb.{{ .Release.Namespace }}:27017'
+              value: 'mongodb://{{ .Values.mongodb.auth.rootUser }}:{{ .Values.mongodb.auth.rootPassword }}@{{ .Release.Name }}-mongodb.{{ .Release.Namespace }}:27017'
             - name: SPRING_SLEUTH_PROPAGATION_KEYS
               value: 'x-request-id,x-ot-span-context'
             - name: JAVA_OPTS
