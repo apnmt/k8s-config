@@ -4,9 +4,15 @@ metadata:
   name: default
 spec:
   requirements:
-    - key: karpenter.sh/capacity-type
+    - key: "karpenter.sh/capacity-type"
       operator: In
-      values: {{ .Values.requirements.CapacityType.values }}
+      values: {{ .Values.requirements.capacityType.values }}
+    - key: "node.kubernetes.io/instance-type"
+      operator: In
+      values: {{ .Values.requirements.instanceType.values }}
+    - key: "topology.kubernetes.io/zone"
+      operator: In
+      values: {{ .Values.requirements.zones.values }}
   limits:
     resources:
       cpu: {{ .Values.limits.resources.cpu }}

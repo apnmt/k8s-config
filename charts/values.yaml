@@ -10,3 +10,9 @@ requirements:
   capaccityType:
     values:
       - "spot"
+  instanceType:
+    values:
+      - "t2.micro"
+  zones:
+    values:
+      - "eu-central-1a"
