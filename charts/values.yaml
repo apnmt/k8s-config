@@ -5,3 +5,9 @@ mongodb:
     rootUser: root
     rootPassword: Uz7GnNqGEUkf
 
+hpa:
+  maxReplicas: 3
+  minReplicas: 1
+  metrics:
+    cpu:
+      averageUtilization: 50
