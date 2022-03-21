@@ -1,1 +1,8 @@
 # Values will be defined by service.
+
+hpa:
+  maxReplicas: 3
+  minReplicas: 1
+  metrics:
+    cpu:
+      averageUtilization: 50
