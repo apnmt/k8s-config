@@ -12,6 +12,11 @@ jobs:
         run: |
           curl -XPOST -u "tobi5775:${{ secrets.API_TOKEN_GITHUB }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/apnmt/organization-appointment-service-k8s/actions/workflows/github-build-helm-chart.yml/dispatches --data '{"ref": "master"}'
 
+      # Workaround: Race Condition on apnmt-charts push
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+
       - name: Trigger auth-service Build Helm Chart
         run: |
           curl -XPOST -u "tobi5775:${{ secrets.API_TOKEN_GITHUB }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/apnmt/auth-service-k8s/actions/workflows/github-build-helm-chart.yml/dispatches --data '{"ref": "master"}'
