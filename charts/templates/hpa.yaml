@@ -10,10 +10,4 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ .Values.image.tag }}
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: {{ .Values.hpa.metrics.cpu.averageUtilization | default 50}}
+  targetCPUUtilizationPercentage: {{ .Values.hpa.targetCPUUtilizationPercentage | default 50}}
