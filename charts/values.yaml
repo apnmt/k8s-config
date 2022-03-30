@@ -5,11 +5,3 @@ limits:
   resources:
     cpu: 50
     memory: 50Gi
-
-requirements:
-  capaccityType:
-    values:
-      - "spot"
-  zones:
-    values:
-      - "eu-central-1a"

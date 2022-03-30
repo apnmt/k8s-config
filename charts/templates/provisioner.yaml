@@ -6,10 +6,10 @@ spec:
   requirements:
     - key: "karpenter.sh/capacity-type"
       operator: In
-      values: {{ .Values.requirements.capacityType.values }}
+      values: ["spot"]
     - key: "topology.kubernetes.io/zone"
       operator: In
-      values: {{ .Values.requirements.zones.values }}
+      values: ["eu-central-1a", "eu-central-1b"]
   limits:
     resources:
       cpu: {{ .Values.limits.resources.cpu }}
