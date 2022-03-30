@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   labels:
     grafana_dashboard: "1"
-  name: micrometer-dashboard
+  name: emissary-dashboard
 data:
   new-dashboard.json: |-
     {
@@ -156,7 +156,7 @@ data:
               "hide": false,
               "instant": true,
               "intervalFactor": 1,
-              "legendFormat": "{{version}}",
+              "legendFormat": "{{ `{{version}}` }}",
               "refId": "A"
             }
           ],
@@ -311,7 +311,7 @@ data:
               "targets": [
                 {
                   "expr": " ambassador_edge_stack_go_memstats_alloc_bytes{namespace=~\"$namespace\", pod=~\"$pod\"}",
-                  "legendFormat": "{{pod}}",
+                  "legendFormat": "{{ `{{pod}}` }}",
                   "refId": "A"
                 }
               ],

@@ -1639,7 +1639,7 @@ data:
                   "expr": "jvm_threads_states_threads{application=\"$application\", instance=\"$instance\"}",
                   "format": "time_series",
                   "intervalFactor": 2,
-                  "legendFormat": "{{state}}",
+                  "legendFormat": "{{ `{{state}}` }}",
                   "refId": "A"
                 }
               ],
@@ -1745,7 +1745,7 @@ data:
                   "format": "time_series",
                   "interval": "",
                   "intervalFactor": 2,
-                  "legendFormat": "{{level}}",
+                  "legendFormat": "{{ `{{level}}` }}",
                   "metric": "",
                   "refId": "A",
                   "step": 1200
@@ -2218,7 +2218,7 @@ data:
                   "format": "time_series",
                   "hide": false,
                   "intervalFactor": 1,
-                  "legendFormat": "{{action}} ({{cause}})",
+                  "legendFormat": "{{ `{{action}}` }} ({{ `{{cause}}` }})",
                   "refId": "A"
                 }
               ],
@@ -2295,7 +2295,7 @@ data:
                   "hide": false,
                   "instant": false,
                   "intervalFactor": 1,
-                  "legendFormat": "avg {{action}} ({{cause}})",
+                  "legendFormat": "avg {{ `{{action}}` }} ({{ `{{cause}}` }})",
                   "refId": "A"
                 },
                 {
@@ -2304,7 +2304,7 @@ data:
                   "hide": false,
                   "instant": false,
                   "intervalFactor": 1,
-                  "legendFormat": "max {{action}} ({{cause}})",
+                  "legendFormat": "max {{ `{{action}}` }} ({{ `{{cause}}` }})",
                   "refId": "B"
                 }
               ],
