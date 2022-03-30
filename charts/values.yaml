@@ -33,3 +33,8 @@ kube-prometheus-stack:
           scrape_interval: 5s
           static_configs:
             - targets: [ 'paymentservice-k8s.apnmt.svc.cluster.local' ]
+        - job_name: authservice
+          metrics_path: '/management/prometheus'
+          scrape_interval: 5s
+          static_configs:
+            - targets: [ 'authservice-k8s.apnmt.svc.cluster.local' ]
