@@ -9,7 +9,7 @@ spec:
       values: ["spot"]
     - key: "topology.kubernetes.io/zone"
       operator: In
-      values: ["eu-central-1a", "eu-central-1b"]
+      values: ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
   limits:
     resources:
       cpu: {{ .Values.limits.resources.cpu }}
