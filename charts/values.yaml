@@ -1,18 +1,10 @@
 kibana:
-  resources:
-    requests:
-      memory: '512Mi'
-      cpu: '500m'
   kibanaConfig:
     kibana.yml: |
       server.basePath: "/kibana"
       server.rewriteBasePath: false
   elasticsearchHosts: "http://elasticsearch-master.apnmt:9200"
 elasticsearch:
-  resources:
-    requests:
-      memory: '512Mi'
-      cpu: '500m'
   replicas: 1
   minimumMasterNodes: 1
 logstash:
@@ -38,7 +30,3 @@ logstash:
         port: 5000
         protocol: TCP
         targetPort: 5000
-  resources:
-    requests:
-      memory: '512Mi'
-      cpu: '500m'
