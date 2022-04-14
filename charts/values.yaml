@@ -1,6 +1,10 @@
 # Values will be defined by service.
 
 mongodb:
+  resources:
+    limits:
+      cpu: 2
+      memory: 4Gi
   auth:
     rootUser: root
     rootPassword: Uz7GnNqGEUkf
