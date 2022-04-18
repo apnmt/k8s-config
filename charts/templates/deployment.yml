@@ -30,6 +30,7 @@ spec:
       initContainers:
         - name: init-ds
           image: busybox:latest
+          {{ if eq .Values.mongodb.architecture "standalone"}}
           command:
             - '/bin/sh'
             - '-c'
@@ -44,6 +45,22 @@ spec:
                 echo "DB is not yet reachable;sleep for 10s before retry"
                 sleep 10
               done
+          {{ else }}
+          command:
+            - '/bin/sh'
+            - '-c'
+            - |
+              while true
+              do
+                rt=$(nc -z -w 1 {{ .Release.Name }}-mongodb-0.{{ .Release.Name }}-mongodb-headless 27017)
+                if [ $? -eq 0 ]; then
+                  echo "DB is UP"
+                  break
+                fi
+                echo "DB is not yet reachable;sleep for 10s before retry"
+                sleep 10
+              done
+          {{ end }}
       containers:
         - name: "{{ .Values.image.tag }}-app"
           image: "wittman8/apnmt:{{ .Values.image.tag }}-{{ .Chart.AppVersion }}"
@@ -54,7 +71,7 @@ spec:
             - name: SPRING_DATA_MONGODB_DATABASE
               value: {{ .Values.image.tag }}
             - name: SPRING_DATA_MONGODB_URI
-              value: 'mongodb://{{ .Values.mongodb.auth.rootUser }}:{{ .Values.mongodb.auth.rootPassword }}@{{ .Release.Name }}-mongodb.{{ .Release.Namespace }}:27017'
+              value: {{ template "mongodb.uri" . }}
             - name: SPRING_SLEUTH_PROPAGATION_KEYS
               value: 'x-request-id,x-ot-span-context'
             - name: JAVA_OPTS

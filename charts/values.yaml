@@ -8,6 +8,8 @@ mongodb:
   auth:
     rootUser: root
     rootPassword: Uz7GnNqGEUkf
+  architecture: standalone
+  replicaCount: 1
 
 hpa:
   maxReplicas: 3
