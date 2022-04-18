@@ -9,8 +9,8 @@
       {{- printf "," -}}
     {{- end -}}
   {{- end -}}
-  {{- printf "?authSource=admin" -}}
+  {{- printf "/?authSource=admin" -}}
   {{ else }}
-    {{- printf "mongodb://%s:%s@%s-mongodb.%s:27017?authSource=admin" $.Values.mongodb.auth.rootUser $.Values.mongodb.auth.rootPassword $.Release.Name $.Release.Namespace -}}
+    {{- printf "mongodb://%s:%s@%s-mongodb.%s:27017/?authSource=admin" $.Values.mongodb.auth.rootUser $.Values.mongodb.auth.rootPassword $.Release.Name $.Release.Namespace -}}
   {{end}}
 {{- end -}}
