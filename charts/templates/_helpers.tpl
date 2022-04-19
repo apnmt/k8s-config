@@ -9,7 +9,7 @@
       {{- printf "," -}}
     {{- end -}}
   {{- end -}}
-  {{- printf "/?authSource=admin" -}}
+  {{- printf "/?replicaSet=rs0&authSource=admin&readPreference=nearest&maxStalenessSeconds=120" -}}
   {{ else }}
     {{- printf "mongodb://%s:%s@%s-mongodb.%s:27017/?authSource=admin" $.Values.mongodb.auth.rootUser $.Values.mongodb.auth.rootPassword $.Release.Name $.Release.Namespace -}}
   {{end}}
