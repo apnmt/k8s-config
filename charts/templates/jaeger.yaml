@@ -4,7 +4,12 @@ metadata:
   name: jaeger
   namespace: {{ .Release.Namespace }}
 spec:
-  strategy: allInOne
-  allInOne:
+  strategy: production
+  storage:
+    type: elasticsearch
+    options:
+      es:
+        server-urls: http://elasticsearch-master.apnmt:9200
+  query:
     options:
       query.base-path: /jaeger
